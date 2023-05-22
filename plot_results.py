@@ -54,7 +54,7 @@ x_labels = ["NumPy Relaxed API",
             "Torch CPU Relaxed API",
             "Torch CPU Strict API",
             "Torch GPU Relaxed API",
-            "Torch GPU Stric API"]
+            "Torch GPU Strict API"]
 for x_loc, data, color in zip(range(8),
                                       [numpy_timings_sec,
                                        numpy_strict_timings_sec,
@@ -86,7 +86,7 @@ for x_loc, data, color in zip(range(8),
            color=color,
            alpha=alpha,
            capsize=6.0)
-       
+
 ax.set_yscale("log")
 ax.set_ylabel("log(Average Time from interwoven trials) (s)")
 ax.set_xticks(range(8))

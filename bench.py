@@ -7,17 +7,17 @@ from scipy.signal import welch
 
 
 def allocate_arr(namespace):
-    size = 90_000_000
+    size = 50_000_000
     if namespace == "numpy":
-        x = np.zeros(size)
+        x = np.zeros(size, dtype=np.float32)
     elif namespace == "cupy":
-        x = cp.zeros(size)
+        x = cp.zeros(size, dtype=cp.float32)
     elif namespace == "torch_gpu":
         torch.set_default_device("cuda")
-        x = torch.zeros(size)
+        x = torch.zeros(size, dtype=torch.float32)
     elif namespace == "torch_cpu":
         torch.set_default_device("cpu")
-        x = torch.zeros(size)
+        x = torch.zeros(size, dtype=torch.float32)
     else:
         raise ValueError(f"unrecognized namespace requested for array backend: {namespace}")
     x[0] = 1
@@ -27,8 +27,8 @@ def allocate_arr(namespace):
 
 def main(x):
     f, p = welch(x, nperseg=8)
-    print("f:", f)
-    print("p:", p)
+    # print("f:", f)
+    # print("p:", p)
 
 
 if __name__ == "__main__":
@@ -42,4 +42,5 @@ if __name__ == "__main__":
     main(x=x)
     end = time.perf_counter()
     elapsed_time_sec = end - start
-    print(f"Elapsed Time for Namespace {namespace} (s):", elapsed_time_sec)
+    # print(f"Elapsed Time for Namespace {namespace} (s):", elapsed_time_sec)
+    print(elapsed_time_sec)
